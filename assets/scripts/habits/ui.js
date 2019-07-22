@@ -8,6 +8,12 @@ const getHabitsSuccess = (data) => {
   $('.content').html(showHabitsHtml)
 }
 
+const createHabitSuccess = (data) => {
+  console.log(data)
+  const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
+  $('.content').html(showHabitsHtml)
+}
+
 const deleteHabitSuccess = (data) => {
   console.log(data)
   const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
@@ -26,6 +32,7 @@ const failure = (error) => {
 
 module.exports = {
   getHabitsSuccess,
+  createHabitSuccess,
   deleteHabitSuccess,
   updateHabitSuccess,
   failure

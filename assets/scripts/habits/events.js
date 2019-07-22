@@ -4,9 +4,16 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 
 const onGetHabits = (event) => {
-  event.preventDefault()
+  // event.preventDefault()
   api.getHabits()
     .then(ui.getHabitsSuccess)
+    .catch(ui.failure)
+}
+
+const onCreateHabit = (event) => {
+  event.preventDefault()
+  api.createHabit()
+    .then(ui.createHabitSuccess)
     .catch(ui.failure)
 }
 
@@ -33,9 +40,10 @@ const onUpdateHabit = (event) => {
 }
 
 const addHandlers = () => {
-  $('#getBooksButton').on('click', onGetHabits)
-  $('#clearBooksButton').on('click', onDeleteHabit)
-  $('body').on('click', '.deleteBookButton', onUpdateHabit)
+  $(document).ready(onGetHabits)
+  $('#addHabitButton').on('click', onCreateHabit)
+  $('body').on('click', '.deleteHabitButton', onDeleteHabit)
+  $('body').on('click', '.updateHabitButton', onUpdateHabit)
 }
 
 module.exports = {

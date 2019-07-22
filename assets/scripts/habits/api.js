@@ -8,6 +8,13 @@ const getHabits = function () {
   })
 }
 
+const createHabit = function () {
+  return $.ajax({
+    url: config.apiUrl + '/habits',
+    method: 'POST'
+  })
+}
+
 const deleteHabit = function (id) {
   return $.ajax({
     url: config.apiUrl + '/habits/' + id,
@@ -26,6 +33,7 @@ const updateHabit = function (id) {
 
 module.exports = {
   getHabits,
+  createHabit,
   deleteHabit,
   updateHabit
 }
