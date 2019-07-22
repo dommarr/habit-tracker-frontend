@@ -1,0 +1,20 @@
+{{#each habits as |habit|}}
+  {{log habit}}
+  <section data-id="{{habit.id}}">
+    <h6>Habit:</h6>
+    <h3>
+      {{limit habit.habit_title 15}}
+    </h2>
+    <h6>Streak:</h6>
+    <p>
+      {{#if habit.streak}}
+        {{habit.streak}}
+      {{else}}
+        Streak not started.
+      {{/if}}
+    </p>
+    <!-- {{> partial}} -->
+    <!-- <button class="btn btn-danger deleteBookButton" data-id="{{book.id}}">Remove Book</button> -->
+  </section>
+
+{{/each}}
