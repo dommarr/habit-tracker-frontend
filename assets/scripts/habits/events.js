@@ -1,5 +1,6 @@
 'use strict'
 
+const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api.js')
 const ui = require('./ui.js')
 
@@ -10,11 +11,15 @@ const onGetHabits = (event) => {
     .catch(ui.failure)
 }
 
-const onCreateHabit = (event) => {
+const onCreateHabit = event => {
   event.preventDefault()
-  api.createHabit()
+  const form = event.target
+  const formData = getFormFields(form)
+  api.createHabit(formData)
     .then(ui.createHabitSuccess)
     .catch(ui.failure)
+  console.log(`Form data is:`)
+  console.log(formData)
 }
 
 const onDeleteHabit = (event) => {
@@ -40,12 +45,13 @@ const onUpdateHabit = (event) => {
 }
 
 const addHandlers = () => {
-  $(document).ready(onGetHabits)
-  $('#addHabitButton').on('click', onCreateHabit)
+  // $('#sign-in').on('submit', onGetHabits)
+  $('#add-habit').on('submit', onCreateHabit)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
   $('body').on('click', '.updateHabitButton', onUpdateHabit)
 }
 
 module.exports = {
-  addHandlers
+  addHandlers,
+  onGetHabits
 }

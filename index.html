@@ -14,6 +14,8 @@
     <body>
       <h1>Habit Tracker</h1>
 
+      <p id="message">hold</p>
+
       <nav id="nav">
           <button id="new-game">Add Habit</button>
           <button id="sign-out">Sign Out</button>
@@ -25,9 +27,11 @@
           <button>Change Password</button>
         </form>
 
+
+<!-- name for input can directly correlate to the JSON object, so the api can simply use formData. -->
         <form id="add-habit">
-          <input type="text" name="habit_title" placeholder="Habit Title...">
-          <button id="addHabitButton">Add Habit</button>
+          <input type="text" name="habit[habit_title]" placeholder="Habit Title...">
+          <button>Add Habit</button>
         </form>
 
     <section id="auth">
