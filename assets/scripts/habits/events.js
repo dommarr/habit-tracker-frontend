@@ -35,13 +35,15 @@ const onDeleteHabit = (event) => {
 }
 
 const onUpdateHabit = (event) => {
-// don't need it preventDefault because it is not a form
-// event.preventDefault()
+  event.preventDefault()
   const id = $(event.target).data('id')
-  api.updateHabit(id)
-    .then(() => {
-      onUpdateHabit(event)
-    })
+  const form = event.target
+  const formData = getFormFields(form)
+  api.updateHabit(id, formData)
+  // .then(ui.updateHabitSuccess)
+  // .catch(ui.failure)
+  api.getHabits()
+    .then(ui.getHabitsSuccess)
     .catch(ui.failure)
 }
 
@@ -49,7 +51,7 @@ const addHandlers = () => {
   // $('#sign-in').on('submit', onGetHabits)
   $('#add-habit').on('submit', onCreateHabit)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
-  $('body').on('click', '.updateHabitButton', onUpdateHabit)
+  $('body').on('submit', '.updateHabitButton', onUpdateHabit)
 }
 
 module.exports = {

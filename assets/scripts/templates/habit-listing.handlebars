@@ -4,17 +4,16 @@
     <h6>Habit:</h6>
     <h3>
       {{limit habit.habit_title 15}}
-    </h2>
+    </h3>
     <h6>Streak:</h6>
-    <p>
-      {{#if habit.streak}}
-        {{habit.streak}}
-      {{else}}
-        Streak not started.
-      {{/if}}
-    </p>
+    <h4>
+      {{habit.streak}}
+    </h4>
     <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-    <button class="btn btn-primary updateHabitButton" data-id="{{habit.id}}">Edit Habit</button>
+    <form class="edit-habit">
+      <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
+      <button class="btn btn-primary updateHabitButton" data-id="{{habit.id}}">Edit Habit</button>
+    </form>
   </section>
 
 {{/each}}
