@@ -18,8 +18,9 @@ const onCreateHabit = event => {
   api.createHabit(formData)
     .then(ui.createHabitSuccess)
     .catch(ui.failure)
-  console.log(`Form data is:`)
-  console.log(formData)
+  api.getHabits()
+    .then(ui.getHabitsSuccess)
+    .catch(ui.failure)
 }
 
 const onDeleteHabit = (event) => {

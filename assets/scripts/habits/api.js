@@ -28,7 +28,10 @@ const deleteHabit = function (id) {
   return $.ajax({
     url: config.apiUrl + '/habits/' + id,
     // url: `${config.apiUrl}/books/${id}`,
-    method: 'DELETE'
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
   })
 }
 
