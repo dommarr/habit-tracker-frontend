@@ -1,6 +1,7 @@
 {{#each habits as |habit|}}
   {{log habit}}
-  <section data-id="{{habit.id}}">
+  <section class="container shadow-lg rounded bg-light" data-id="{{habit.id}}">
+    <div class="tile" data-id="{{habit.id}}">
     <h6>Habit:</h6>
     <h3>
       {{limit habit.habit_title 15}}
@@ -10,10 +11,12 @@
       {{habit.streak}}
     </h4>
     <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
+    <button class="btn btn-primary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
     <form class="edit-habit" data-id="{{habit.id}}">
       <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
       <button class="btn btn-primary">Edit Habit</button>
     </form>
+  </div>
   </section>
 
 {{/each}}

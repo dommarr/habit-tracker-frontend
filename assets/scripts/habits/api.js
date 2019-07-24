@@ -46,9 +46,24 @@ const updateHabit = function (id, formData) {
   })
 }
 
+const updateStreak = function (id, streak, title) {
+  return $.ajax({
+    url: config.apiUrl + '/habits/' + id,
+    data: { habit: {
+      streak: JSON.stringify(streak),
+      habit_title: title }
+    },
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   getHabits,
   createHabit,
   deleteHabit,
-  updateHabit
+  updateHabit,
+  updateStreak
 }

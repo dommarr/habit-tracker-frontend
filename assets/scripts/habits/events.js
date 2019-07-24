@@ -27,7 +27,6 @@ const onDeleteHabit = (event) => {
 // don't need it preventDefault because it is not a form
 // event.preventDefault()
   const id = $(event.target).data('id')
-  console.log(`id is: ${id}`)
   api.deleteHabit(id)
     .then(() => {
       onGetHabits(event)
@@ -40,10 +39,9 @@ const onDeleteHabit = (event) => {
 const onUpdateHabit = (event) => {
   event.preventDefault()
   const id = $(event.target).data('id')
-  console.log(`id is: ${id}`)
+  // const streak = $(event.target).data('streak')
   const form = event.target
   const formData = getFormFields(form)
-  console.log(`formData is: ${formData}`)
   api.updateHabit(id, formData)
     .then(() => {
       onGetHabits(event)
@@ -51,13 +49,23 @@ const onUpdateHabit = (event) => {
     .catch(ui.failure)
 }
 
-// const onUpdateStreak = (event) => {
-//   event.preventDefault()
-//   let streak = $(event.target).data('streak')
-//   console.log(`Streak is ${streak}`)
-//   streak += 1
-//   api.updateHabit(streak)
-// }
+const onUpdateStreak = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  console.log(`id is ${id}`)
+  const title = $(event.target).data('title')
+  console.log(`title is ${title}`)
+  let streak = $(event.target).data('streak')
+  console.log(`Streak is ${streak}`)
+  streak += 1
+  console.log(`Updated streak is ${streak}`)
+  // const updateObject = {id: id, habit_title: habitTitle, streak: streak}
+  api.updateStreak(id, streak, title)
+    .then(() => {
+      onGetHabits(event)
+    })
+    .catch(ui.failure)
+}
 
 // Change passwords
 const onShowPassword = event => {
@@ -76,7 +84,7 @@ const addHandlers = () => {
   $('#add-habit').on('submit', onCreateHabit)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
   $('body').on('submit', '.edit-habit', onUpdateHabit)
-  // $('body').on('click', '.tile', onUpdateStreak)
+  $('body').on('click', '.streakButton', onUpdateStreak)
 }
 
 module.exports = {
