@@ -27,6 +27,7 @@ const onDeleteHabit = (event) => {
 // don't need it preventDefault because it is not a form
 // event.preventDefault()
   const id = $(event.target).data('id')
+  console.log(`id is: ${id}`)
   api.deleteHabit(id)
     .then(() => {
       onGetHabits(event)
@@ -39,8 +40,10 @@ const onDeleteHabit = (event) => {
 const onUpdateHabit = (event) => {
   event.preventDefault()
   const id = $(event.target).data('id')
+  console.log(`id is: ${id}`)
   const form = event.target
   const formData = getFormFields(form)
+  console.log(`formData is: ${formData}`)
   api.updateHabit(id, formData)
     .then(() => {
       onGetHabits(event)

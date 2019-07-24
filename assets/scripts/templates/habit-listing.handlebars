@@ -10,9 +10,9 @@
       {{habit.streak}}
     </h4>
     <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-    <form class="edit-habit">
+    <form class="edit-habit" data-id="{{habit.id}}">
       <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-      <button class="btn btn-primary" data-id="{{habit.id}}">Edit Habit</button>
+      <button class="btn btn-primary">Edit Habit</button>
     </form>
   </section>
 

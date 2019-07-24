@@ -36,15 +36,9 @@ const deleteHabit = function (id) {
 }
 
 const updateHabit = function (id, formData) {
-  console.log(id)
-  console.log(formData)
   return $.ajax({
     url: config.apiUrl + '/habits/' + id,
-    // url: `${config.apiUrl}/books/${id}`,
-    data: { habit: {
-      id: JSON.stringify(id),
-      habit_title: JSON.stringify(formData)
-    } },
+    data: formData,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + store.user.token
