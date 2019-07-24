@@ -11,4 +11,5 @@ const habitEvents = require('./habits/events.js')
 $(() => {
   habitEvents.addHandlers()
   authEvents.authHandlers()
+  $('#nav').hide()
 })
