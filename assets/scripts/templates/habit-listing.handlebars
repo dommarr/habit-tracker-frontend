@@ -1,3 +1,5 @@
+<!-- array = {{sortBy habits "id"}} -->
+
 {{#each habits as |habit|}}
   {{log habit}}
   <!-- <section class="container shadow-lg rounded bg-transparent" data-id="{{habit.id}}">
@@ -41,7 +43,7 @@
      <h5 class="card-title">{{limit habit.habit_title 15}}</h5>
      <p class="card-text">{{habit.streak}}</p>
    </div>
-   <button type="button" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-dark"><img src="https://i.imgur.com/el7zGU0.png"></button>
+   <button type="button" data-toggle="modal" data-target=".bd-example-modal-sm" class="btn btn-primary"><img src="https://i.imgur.com/el7zGU0.png"></button>
    <button class="btn btn-secondary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
    <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
 
