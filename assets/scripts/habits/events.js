@@ -23,10 +23,18 @@ const onCreateHabit = event => {
     .catch(ui.failure)
 }
 
+let mid = ''
+
+const onSettings = event => {
+  mid = $(event.target).data('id')
+  console.log($(event.target).data('id'))
+  console.log(`mid is ${mid}`)
+}
+
 const onDeleteHabit = (event) => {
 // don't need it preventDefault because it is not a form
 // event.preventDefault()
-  const id = $(event.target).data('id')
+  let id = mid
   api.deleteHabit(id)
     .then(() => {
       onGetHabits(event)
@@ -38,10 +46,12 @@ const onDeleteHabit = (event) => {
 
 const onUpdateHabit = (event) => {
   event.preventDefault()
-  const id = $(event.target).data('id')
+  let id = mid
   // const streak = $(event.target).data('streak')
   const form = event.target
   const formData = getFormFields(form)
+  console.log(`formData is ${formData}`)
+  console.log(`id is ${id}`)
   api.updateHabit(id, formData)
     .then(() => {
       onGetHabits(event)
@@ -82,8 +92,10 @@ const addHandlers = () => {
   $('#password').on('click', onShowPassword)
   $('#habit-menu').on('click', onShowHabit)
   $('#add-habit').on('submit', onCreateHabit)
+  $('body').on('click', '.settings', onSettings)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
   $('body').on('submit', '.edit-habit', onUpdateHabit)
+  $('.edit-habit').on('submit', onUpdateHabit)
   $('body').on('click', '.streakButton', onUpdateStreak)
 }
 
