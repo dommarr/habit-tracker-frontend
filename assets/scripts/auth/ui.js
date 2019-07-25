@@ -17,7 +17,7 @@ const failureMessage = message => {
 const signUpSuccess = responseData => {
   successMessage(`Thanks for signing up! You are now logged in.`)
   api.signIn(store.save)
-  $('#nav').show()
+  $('.navbar').show()
   $('#change-password').hide()
   $('#add-habit').hide()
   // habitEvents.onGetHabits()
@@ -29,7 +29,7 @@ const signUpFailure = () => {
 
 const signInSuccess = responseData => {
   successMessage('Sign in successful.')
-  $('#nav').show()
+  $('.navbar').show()
   $('#change-password').hide()
   $('#add-habit').hide()
   store.user = responseData.user
@@ -54,7 +54,7 @@ const SignOutSuccess = () => {
   successMessage('Sign out succesful.')
   $('#auth').show()
   $('.content').hide()
-  $('#nav').hide()
+  $('.navbar').hide()
 }
 
 const SignOutFailure = () => {
