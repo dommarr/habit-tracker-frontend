@@ -15,12 +15,10 @@ const failureMessage = message => {
 }
 
 const signUpSuccess = responseData => {
-  successMessage(`Thanks for signing up! You are now logged in.`)
+  // successMessage(`Thanks for signing up! You are now logged in.`)
   api.signIn(store.save)
-  $('.navbar').show()
-  $('#change-password').hide()
-  $('#add-habit').hide()
-  // habitEvents.onGetHabits()
+    .then(signInSuccess)
+    .catch(signInFailure)
 }
 
 const signUpFailure = () => {
