@@ -5,7 +5,6 @@ const api = require('./api.js')
 const ui = require('./ui.js')
 
 const onGetHabits = (event) => {
-  // event.preventDefault()
   api.getHabits()
     .then(ui.getHabitsSuccess)
     .catch(ui.failure)
@@ -23,18 +22,14 @@ const onCreateHabit = event => {
     .catch(ui.failure)
 }
 
-let mid = ''
+let fid = ''
 
 const onSettings = event => {
-  mid = $(event.target).data('id')
-  console.log($(event.target).data('id'))
-  console.log(`mid is ${mid}`)
+  fid = $(event.target).data('id')
 }
 
 const onDeleteHabit = (event) => {
-// don't need it preventDefault because it is not a form
-// event.preventDefault()
-  let id = mid
+  const id = fid
   api.deleteHabit(id)
     .then(() => {
       onGetHabits(event)
@@ -46,30 +41,25 @@ const onDeleteHabit = (event) => {
 
 const onUpdateHabit = (event) => {
   event.preventDefault()
-  let id = mid
-  // const streak = $(event.target).data('streak')
+  const id = fid
   const form = event.target
   const formData = getFormFields(form)
-  console.log(`formData is ${formData}`)
-  console.log(`id is ${id}`)
   api.updateHabit(id, formData)
     .then(() => {
       onGetHabits(event)
-    })
+      $('#settings-modal').modal('hide')
+    },
+    $('#message').text('Habit updated.')
+    )
     .catch(ui.failure)
 }
 
 const onUpdateStreak = (event) => {
   event.preventDefault()
   const id = $(event.target).data('id')
-  console.log(`id is ${id}`)
   const title = $(event.target).data('title')
-  console.log(`title is ${title}`)
   let streak = $(event.target).data('streak')
-  console.log(`Streak is ${streak}`)
   streak += 1
-  console.log(`Updated streak is ${streak}`)
-  // const updateObject = {id: id, habit_title: habitTitle, streak: streak}
   api.updateStreak(id, streak, title)
     .then(() => {
       onGetHabits(event)
@@ -95,7 +85,6 @@ const addHandlers = () => {
   $('body').on('click', '.settings', onSettings)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
   $('body').on('submit', '.edit-habit', onUpdateHabit)
-  $('.edit-habit').on('submit', onUpdateHabit)
   $('body').on('click', '.streakButton', onUpdateStreak)
 }
 

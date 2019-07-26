@@ -1,87 +1,18 @@
 {{#each habits as |habit|}}
   {{log habit}}
-  <!-- <section class="container shadow-lg rounded bg-transparent" data-id="{{habit.id}}">
-    <div class="tile" data-id="{{habit.id}}">
-    <h6>Habit:</h6>
-    <h3>
-      {{limit habit.habit_title 15}}
-    </h3>
-    <h6>Streak:</h6>
-    <h4>
-      {{habit.streak}}
-    </h4>
-    <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-    <button class="btn btn-secondary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
-    <form class="edit-habit" data-id="{{habit.id}}">
-      <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-      <button class="btn btn-secondary">Edit Habit</button>
-    </form>
-  </div>
-</section> -->
-
-  <!-- <div class="card border-dark mb-3 tile" style="max-width: 18rem;" data-id="{{habit.id}}">
-  <div class="card-header">{{limit habit.habit_title 15}}</div>
-  <div class="card-body text-dark">
-    <h5 class="card-title">{{habit.streak}}</h5>
-    <button class="btn btn-secondary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
-  </div>
-  <div class="dropdown">
-  <button type="button" class="btn btn-light text-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Settings
-  </button>
-  <div class="dropdown-menu">
-    <button class="btn btn-secondary updateHabitButton" data-id="{{habit.id}}">Update Habit</button>
-    <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-  </div>
-</div> -->
 
 <div class="card-columns">
-<div class="card bg-primary text-white text-center m-3 tile" data-id="{{habit.id}}">
+<div class="card bg-primary text-white text-center p-3 tile" data-id="{{habit.id}}">
   <div class="card-body">
      <h5 class="card-title">{{limit habit.habit_title 15}}</h5>
      <p class="card-text">{{habit.streak}}</p>
    </div>
-   <button type="button" data-toggle="modal" data-target=".settings-modal" data-id="{{habit.id}}" class="btn btn-primary settings"><img src="https://i.imgur.com/el7zGU0.png"></button>
-   <button class="btn btn-secondary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
-   <!-- <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-
-    <form class="edit-habit" data-id="{{habit.id}}">
-     <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-     <button class="btn btn-secondary">Edit Habit</button>
-   </form> -->
-
-
-
-
-   <!-- <div class="dropdown">
-   <button type="button" class="btn btn-light text-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-     Settings
-   </button>
-   <div class="dropdown-menu">
-     <button class="btn btn-secondary updateHabitButton" data-id="{{habit.id}}">Update Habit</button>
-     <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-   </div>
- </div> -->
+   <button type="button" data-id="{{habit.id}}" data-toggle="modal" data-target=".settings-modal" class="btn btn-primary settings">?</button>
+   <button class="btn btn-primary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">+</button>
  </div>
 </div>
 
-<!-- Small modal -->
- <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button> -->
-
-<!-- <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-      <form class="edit-habit" data-id="{{habit.id}}">
-        <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-        <button class="btn btn-secondary">Edit Habit</button>
-      </form>
-      <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button>
-    </div>
-  </div>
-</div> -->
-
-
-<div class="modal fade settings-modal" tabindex="-1" role="dialog">
+<div class="modal settings-modal" id="settings-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -91,23 +22,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <form class="edit-form">
-          <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-        </form>
+        <form class="edit-habit">
+         <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
+         <button class="btn btn-secondary">Edit Habit</button>
+       </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" form="edit-form" class="btn btn-primary edit-habit" data-dismiss="modal">Edit Habit</button>
-        <button type="button" class="btn btn-secondary deleteHabitButton" data-dismiss="modal">Delete</button>
+        <button type="button" class="btn btn-secondary deleteHabitButton" data-dismiss="modal">Delete Habit</button>
       </div>
     </div>
   </div>
 </div>
-  <!-- <button class="btn btn-danger deleteHabitButton" data-id="{{habit.id}}">Delete Habit</button> -->
-
-  <!-- <form class="edit-habit" data-id="{{habit.id}}">
-    <input type="text" name="habit[habit_title]" placeholder="Edit habit title...">
-    <button class="btn btn-secondary">Edit Habit</button>
-  </form>
-</div> -->
 
 {{/each}}
