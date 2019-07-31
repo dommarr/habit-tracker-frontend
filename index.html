@@ -12,12 +12,12 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body class="bg-dark">
+      <header class="bg-secondary mb-0">
+        <h1 class="text-light">Habit Hero</h1>
 
-      <h1 class="text-light">Habit Hero</h1>
-
-      <p id="message" class="quote text-light"><i>"The way you do anything, is the way you do everything."</i></p>
-
-      <nav class="navbar navbar-dark bg-secondary">
+        <p id="message" class="quote text-light"><i>"The way you do anything, is the way you do everything."</i></p>
+      </header>
+      <nav class="navbar navbar-dark bg-secondary mb-4 mt-0">
         <button id="habit-menu" class="btn btn-dark">Add Habit</button>
         <button id="password" class="btn btn-dark">Change Password</button>
         <button id="sign-out" class="btn btn-dark">Sign Out</button>
@@ -50,13 +50,13 @@
       <h2 class="ml-2">Sign In</h2>
       <input class="form-control mb-2 ml-2" type="email" name="credentials[email]" placeholder="Email">
       <input class="form-control mb-2 ml-2" type="password" name="credentials[password]" placeholder="Password">
-      <button class="btn btn-dark ml-2">Sign In</button>
+      <button class="btn btn-dark ml-2 mb-2">Sign In</button>
     </form>
     </div>
   </section>
 
   <main>
-  <div id="content" class="content"></div>
+        <div id="content" class="content"></div>
   </main>
 
     </body>

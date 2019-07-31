@@ -4,6 +4,7 @@ const showHabitsTemplate = require('../templates/habit-listing.handlebars')
 
 const getHabitsSuccess = (data) => {
   const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
+  $('.content').show()
   $('.content').html(showHabitsHtml)
   $('#auth').hide()
 }
