@@ -1,15 +1,13 @@
 {{#each habits as |habit|}}
   {{log habit}}
 
-  <div class="card-columns">
-  <div class="card bg-primary text-white text-center p-3 tile" data-id="{{habit.id}}">
+  <div class="card bg-primary text-white text-center mb-3 tile" data-id="{{habit.id}}">
     <div class="card-body">
        <h5 class="card-title">{{limit habit.habit_title 15}}</h5>
        <p class="card-text">{{habit.streak}}</p>
      </div>
      <button type="button" data-id="{{habit.id}}" data-toggle="modal" data-target=".settings-modal" class="btn btn-primary settings">?</button>
      <button class="btn btn-primary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">+</button>
-   </div>
   </div>
 
 <div class="modal settings-modal" id="settings-modal" tabindex="-1" role="dialog">

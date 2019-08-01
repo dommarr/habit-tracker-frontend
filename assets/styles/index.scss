@@ -5,32 +5,19 @@ body {
   background-color: bg-info;
 }
 
-.card-columns {
-  @include media-breakpoint-only(sm) {
-    column-count: 2;
-  }
-  @include media-breakpoint-only(md) {
-    column-count: 3;
-  }
-  @include media-breakpoint-only(lg) {
-    column-count: 4;
-  }
-  // @include media-breakpoint-only(xl) {
-  //   column-count: 5;
-  // }
-  display: inline-block;
+h1 {
+  align-items: center;
+  display: flex;
   justify-content: center;
-  margin: auto;
 }
 
-// h1 {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
-//
-// .quote {
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// }
+.auth {
+  align-items: center;
+  justify-content: center;
+}
+
+.quote {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
