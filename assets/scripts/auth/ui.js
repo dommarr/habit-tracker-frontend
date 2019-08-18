@@ -7,11 +7,17 @@ const habitEvents = require('../habits/events.js')
 const successMessage = message => {
   $('#message').text(message)
   $('form').trigger('reset')
+  setTimeout(function () {
+    $('#message').text('')
+  }, 2000)
 }
 
 const failureMessage = message => {
   $('#message').text(message)
   $('form').trigger('reset')
+  setTimeout(function () {
+    $('#message').text('')
+  }, 2000)
 }
 
 const signUpSuccess = responseData => {
@@ -28,8 +34,10 @@ const signUpFailure = () => {
 const signInSuccess = responseData => {
   successMessage('Sign in successful.')
   $('.navbar').show()
-  $('#change-password').hide()
-  $('#add-habit').hide()
+  // $('#change-password').hide()
+  // $('#add-habit').hide()
+  $('.goal-view').hide()
+  $('.habit-view').show()
   store.user = responseData.user
   habitEvents.onGetHabits()
 }
@@ -38,14 +46,25 @@ const signInFailure = () => {
   failureMessage('Sign in failed.')
 }
 
+const onShowPassword = event => {
+  $('#change-password-modal').modal('show')
+}
+
 const changePasswordSuccess = responseData => {
-  successMessage('Password changed.')
-  $('#change-password').hide()
-  $('#password').prop('disabled', false)
+  // Close the modal after a submit event
+  $('#change-password-modal').modal('hide')
+  // Show a success modal
+  $('#change-password-success-modal').modal('show')
+  $('form').trigger('reset')
 }
 
 const changePasswordFailure = () => {
-  failureMessage('Change password failed.')
+  // failureMessage('Change password failed.')
+  $('form').trigger('reset')
+  $('.password-error').text('Change password failed.')
+  setTimeout(function () {
+    $('.password-error').text('')
+  }, 2000)
 }
 
 const SignOutSuccess = () => {
@@ -53,6 +72,8 @@ const SignOutSuccess = () => {
   $('#auth').show()
   $('.content').hide()
   $('.navbar').hide()
+  $('.goal-view').hide()
+  $('.habit-view').hide()
 }
 
 const SignOutFailure = () => {
@@ -64,6 +85,7 @@ module.exports = {
   signUpFailure,
   signInSuccess,
   signInFailure,
+  onShowPassword,
   changePasswordSuccess,
   changePasswordFailure,
   SignOutSuccess,

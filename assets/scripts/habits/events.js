@@ -16,26 +16,21 @@ const onCreateHabit = event => {
   const formData = getFormFields(form)
   api.createHabit(formData)
     .then(ui.createHabitSuccess)
-    .catch(ui.failure)
-  api.getHabits()
-    .then(ui.getHabitsSuccess)
+    .then(() => onGetHabits(event))
     .catch(ui.failure)
 }
 
 let fid = ''
 
-const onSettings = event => {
+const onHabitSettings = event => {
   fid = $(event.target).data('id')
 }
 
 const onDeleteHabit = (event) => {
   const id = fid
   api.deleteHabit(id)
-    .then(() => {
-      onGetHabits(event)
-    },
-    $('#message').text('Habit deleted.')
-    )
+    .then(ui.deleteHabitSuccess)
+    .then(() => onGetHabits(event))
     .catch(ui.failure)
 }
 
@@ -45,12 +40,8 @@ const onUpdateHabit = (event) => {
   const form = event.target
   const formData = getFormFields(form)
   api.updateHabit(id, formData)
-    .then(() => {
-      onGetHabits(event)
-      $('#settings-modal').modal('hide')
-    },
-    $('#message').text('Habit updated.')
-    )
+    .then(ui.updateHabitSuccess)
+    .then(() => onGetHabits(event))
     .catch(ui.failure)
 }
 
@@ -61,28 +52,24 @@ const onUpdateStreak = (event) => {
   let streak = $(event.target).data('streak')
   streak += 1
   api.updateStreak(id, streak, title)
-    .then(() => {
-      onGetHabits(event)
-    })
+    .then(() => onGetHabits(event))
     .catch(ui.failure)
 }
 
-// Change passwords
-const onShowPassword = event => {
-  $('#password').prop('disabled', true)
-  $('#change-password').show()
+const onShowHabitMenu = event => {
+  $('#add-habit-modal').modal('show')
 }
 
-const onShowHabit = event => {
-  $('#habit-menu').prop('disabled', true)
-  $('#add-habit').show()
+const onShowHabits = event => {
+  $('.goal-view').hide()
+  $('.habit-view').show()
+  // goalEvents.onGetGoals()
+  onGetHabits(event)
 }
 
 const addHandlers = () => {
-  $('#password').on('click', onShowPassword)
-  $('#habit-menu').on('click', onShowHabit)
   $('#add-habit').on('submit', onCreateHabit)
-  $('body').on('click', '.settings', onSettings)
+  $('body').on('click', '.habit-settings', onHabitSettings)
   $('body').on('click', '.deleteHabitButton', onDeleteHabit)
   $('body').on('submit', '.edit-habit', onUpdateHabit)
   $('body').on('click', '.streakButton', onUpdateStreak)
@@ -90,5 +77,7 @@ const addHandlers = () => {
 
 module.exports = {
   addHandlers,
-  onGetHabits
+  onGetHabits,
+  onShowHabitMenu,
+  onShowHabits
 }
