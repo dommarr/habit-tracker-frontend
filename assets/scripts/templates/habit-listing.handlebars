@@ -3,10 +3,13 @@
   <div class="card bg-primary text-white text-center mb-3 tile" data-id="{{habit.id}}">
     <div class="card-body">
        <h5 class="card-title">{{limit habit.habit_title 15}}</h5>
-       <p class="card-text">{{habit.streak}}</p>
+       <p class="card-text mb-0 text-light h6">Streak</p>
+       <p class="card-text h1">{{habit.streak}}</p>
+       <button class="btn btn-secondary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">Streak +1</button>
+       <div class="mt-3">
+         <button type="button" data-id="{{habit.id}}" data-toggle="modal" data-target="#habit-settings-modal" class="btn btn-outline-light habit-settings">Settings</button>
+       </div>
      </div>
-     <button type="button" data-id="{{habit.id}}" data-toggle="modal" data-target="#habit-settings-modal" class="btn btn-primary habit-settings">?</button>
-     <button class="btn btn-primary streakButton" data-id="{{habit.id}}" data-streak="{{habit.streak}}" data-title="{{habit.habit_title}}">+</button>
   </div>
 
 <!-- EDIT HABIT MODAL -->
@@ -24,6 +27,7 @@
           <p class="edit-habit-failure"></p>
           <div class="form-group">
             <!-- Habit Title Input -->
+            <p>Edit the name of your habit</p>
             <input type="text" class="form-control" name="habit[habit_title]" placeholder="Edit habit title..." required>
           </div>
         </div>

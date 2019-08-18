@@ -37,8 +37,6 @@ const deleteGoalSuccess = (data) => {
 }
 
 const updateGoalSuccess = (data) => {
-  // const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
-  // $('.content').html(showHabitsHtml)
   $('#goal-settings-modal').modal('hide')
   $('.modal-backdrop').remove()
   // Show a success modal

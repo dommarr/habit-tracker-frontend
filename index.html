@@ -29,7 +29,7 @@
             <div class="dropdown-menu">
               <a class="dropdown-item" id="habit-menu" href="#">Add Habit</a>
               <a class="dropdown-item" id="goal-menu" href="#">Add Goal</a>
-              <a class="dropdown-item" id="password-menu" data-toggle="modal" data-target="#create-pass-modal" href="#">Change Password</a>
+              <a class="dropdown-item" id="password-menu" data-toggle="modal" data-target="#change-password-modal" href="#">Change Password</a>
               <a class="dropdown-item" id="sign-out" href="#">Sign Out</a>
             </div>
           </div>
@@ -39,7 +39,7 @@
             <div class="modal-dialog" role="document">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Change password here</h5>
+                  <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                   </button>
@@ -97,6 +97,7 @@
                     <p class="add-habit-failure"></p>
                     <div class="form-group">
                       <!-- Habit Title Input -->
+                      <p>Name the habit you'd like to track</p>
                       <input type="text" class="form-control" name="habit[habit_title]" placeholder="Habit title..." required>
                     </div>
                   </div>
@@ -143,10 +144,12 @@
                     <p class="add-goal-failure"></p>
                     <div class="form-group">
                       <!-- Goal Description Input -->
+                      <p>Describe your goal in a sentence</p>
                       <input type="text" class="form-control" name="goal[description]" placeholder="Goal description..." required>
                     </div>
                     <div class="form-group">
                       <!-- Goal Date Input -->
+                      <p>Goal due by</p>
                       <input type="date" class="form-control" name="goal[due_date]" required>
                     </div>
                   </div>
