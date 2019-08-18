@@ -39,6 +39,8 @@ const signInSuccess = responseData => {
   $('.goal-view').hide()
   $('.habit-view').show()
   store.user = responseData.user
+  $('.username').text(responseData.user.email)
+  $('body').css({'background-color': '#343a40'})
   habitEvents.onGetHabits()
 }
 
@@ -74,6 +76,7 @@ const SignOutSuccess = () => {
   $('.navbar').hide()
   $('.goal-view').hide()
   $('.habit-view').hide()
+  $('body').css({'background-color': '#f8f9fa'})
 }
 
 const SignOutFailure = () => {

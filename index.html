@@ -11,19 +11,20 @@
       <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
-    <body class="bg-dark">
+    <body>
+      <!-- class="bg-dark" -->
       <header class="bg-secondary mb-0 pt-2">
         <h1 class="text-light">Habit Hero</h1>
 
         <p class="quote text-light mb-0 pb-3"><i>"The way you do anything, is the way you do everything."</i></p>
-        <p id="message" class="text-light mb-0 pb-3"></p>
+        <p id="message" class="message text-light mb-0 pb-3"></p>
 
         <nav class="navbar">
           <!-- Dropdown Menu -->
           <!-- <a href="#" class="navbar-item" id="not-signed-in">Not-signed In</a> -->
           <div class="dropdown">
             <!-- The "Username" link will trigger the dropdown menu -->
-            <a class="dropdown-toggle navbar-item username" id="dropdownMenuButton" data-toggle="dropdown" href="#">Username</a>
+            <a class="dropdown-toggle navbar-item text-light username" id="dropdownMenuButton" data-toggle="dropdown" href="#">Username</a>
             <!-- These contents will be revealed when the user clicks on "Username" -->
             <div class="dropdown-menu">
               <a class="dropdown-item" id="habit-menu" href="#">Add Habit</a>
@@ -298,14 +299,18 @@
 
   <main>
     <!-- HABITS SUB-HEADER -->
-    <div class="habit-view">
-      <h3 class="text-light">Habits</h3>
-      <button type="button" id="show-goals" class="btn btn-primary">Show Goals</button>
+    <div class="habit-view mb-3 mt-3">
+      <div class="sub-title">
+        <h3 class="text-light">Habits</h3>
+        <button type="button" id="show-goals" class="btn btn-secondary">Show Goals</button>
+      </div>
     </div>
     <!-- GOALS SUB-HEADER -->
-    <div class="goal-view">
-      <h3 class="text-light">Goals</h3>
-      <button type="button" id="show-habits" class="btn btn-primary">Show Habits</button>
+    <div class="goal-view mb-3 mt-3">
+      <div class="sub-title">
+        <h3 class="text-light">Goals</h3>
+        <button type="button" id="show-habits" class="btn btn-secondary">Show Habits</button>
+      </div>
     </div>
     <!-- SHOWS HABITS OR GOALS -->
     <div class="container card-box">
