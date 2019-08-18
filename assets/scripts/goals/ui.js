@@ -1,6 +1,6 @@
 'use strict'
 
-const showHabitsTemplate = require('../templates/habit-listing.handlebars')
+const showGoalsTemplate = require('../templates/goal-listing.handlebars')
 
 const failureMessage = message => {
   $('#message').text(message)
@@ -10,39 +10,39 @@ const failureMessage = message => {
   }, 2000)
 }
 
-const getHabitsSuccess = (data) => {
-  const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
+const getGoalsSuccess = (data) => {
+  const showGoalsHtml = showGoalsTemplate({ goals: data.goals })
   $('.content').show()
-  $('.content').html(showHabitsHtml)
+  $('.content').html(showGoalsHtml)
   $('#auth').hide()
 }
 
-const createHabitSuccess = (data) => {
+const createGoalSuccess = (data) => {
   // Close the modal after a submit event
-  $('#add-habit-modal').modal('hide')
+  $('#add-goal-modal').modal('hide')
   // Show a success modal
-  $('#add-habit-success-modal').modal('show')
+  $('#add-goal-success-modal').modal('show')
   $('form').trigger('reset')
-  $('.goal-view').hide()
-  $('.habit-view').show()
+  $('.habit-view').hide()
+  $('.goal-view').show()
 }
 
-const deleteHabitSuccess = (data) => {
+const deleteGoalSuccess = (data) => {
   // Close the modal after a submit event
-  $('#settings-modal').modal('hide')
+  $('#goal-settings-modal').modal('hide')
   $('.modal-backdrop').remove()
   // Show a success modal
-  $('#delete-habit-success-modal').modal('show')
+  $('#delete-goal-success-modal').modal('show')
   $('form').trigger('reset')
 }
 
-const updateHabitSuccess = (data) => {
+const updateGoalSuccess = (data) => {
   // const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
   // $('.content').html(showHabitsHtml)
-  $('#settings-modal').modal('hide')
+  $('#goal-settings-modal').modal('hide')
   $('.modal-backdrop').remove()
   // Show a success modal
-  $('#update-habit-success-modal').modal('show')
+  $('#update-goal-success-modal').modal('show')
   $('form').trigger('reset')
 }
 
@@ -51,9 +51,9 @@ const failure = () => {
 }
 
 module.exports = {
-  getHabitsSuccess,
-  createHabitSuccess,
-  deleteHabitSuccess,
-  updateHabitSuccess,
+  getGoalsSuccess,
+  createGoalSuccess,
+  deleteGoalSuccess,
+  updateGoalSuccess,
   failure
 }

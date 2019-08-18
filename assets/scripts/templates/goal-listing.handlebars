@@ -1,0 +1,44 @@
+{{#each goals as |goal|}}
+
+  <div class="card bg-primary text-white text-center mb-3 tile" data-id="{{goal.id}}">
+    <div class="card-body">
+       <h5 class="card-title">{{goal.description}}</h5>
+       <p class="card-text">{{goal.due_date}}</p>
+       <p class="card-text">{{goal.complete}}</p>
+     </div>
+     <button type="button" data-id="{{goal.id}}" data-toggle="modal" data-target="#goal-settings-modal" class="btn btn-primary goal-settings">Settings</button>
+     <button class="btn btn-primary streakButton" data-id="{{goal.id}}" data-date="{{goal.due_date}}" data-description="{{goal.description}}">+</button>
+  </div>
+
+  <!-- EDIT GOAL MODAL -->
+  <div class="modal fade" id="goal-settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Goal Settings</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form class="edit-goal">
+          <div class="modal-body">
+            <p class="edit-goal-failure"></p>
+            <div class="form-group">
+              <!-- Goal Description Input -->
+              <input type="text" class="form-control" name="goal[description]" placeholder="Edit goal description..." required>
+            </div>
+            <div class="form-group">
+              <!-- Goal Date Input -->
+              <input type="date" class="form-control" name="goal[due_date]" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Edit Goal</button>
+            <button type="button" class="btn btn-danger deleteGoalButton" data-dismiss="modal">Delete Goal</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+{{/each}}
