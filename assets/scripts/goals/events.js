@@ -45,16 +45,16 @@ const onUpdateGoal = (event) => {
     .catch(ui.failure)
 }
 
-// const onUpdateStreak = (event) => {
-//   event.preventDefault()
-//   const id = $(event.target).data('id')
-//   const title = $(event.target).data('title')
-//   let streak = $(event.target).data('streak')
-//   streak += 1
-//   api.updateStreak(id, streak, title)
-//     .then(() => onGetHabits(event))
-//     .catch(ui.failure)
-// }
+const onGoalComplete = (event) => {
+  event.preventDefault()
+  const id = $(event.target).data('id')
+  // const title = $(event.target).data('description')
+  let complete = $(event.target).data('complete')
+  complete = !complete
+  api.updateGoalComplete(id, complete)
+    .then(() => onGetGoals(event))
+    .catch(ui.failure)
+}
 
 const onShowGoalMenu = event => {
   $('#add-goal-modal').modal('show')
@@ -72,7 +72,7 @@ const addHandlers = () => {
   $('body').on('click', '.goal-settings', onGoalSettings)
   $('body').on('click', '.deleteGoalButton', onDeleteGoal)
   $('body').on('submit', '.edit-goal', onUpdateGoal)
-  // $('body').on('click', '.streakButton', onUpdateStreak)
+  $('body').on('click', '.goal-complete', onGoalComplete)
 }
 
 module.exports = {

@@ -26,4 +26,8 @@ $(() => {
   // Flip View
   $('#show-habits').on('click', habitEvents.onShowHabits)
   $('#show-goals').on('click', goalEvents.onShowGoals)
+
+  $('body').on('hidden.bs.modal', event => {
+    $('form').trigger('reset')
+  })
 })

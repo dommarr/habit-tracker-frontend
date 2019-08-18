@@ -3,11 +3,19 @@
   <div class="card bg-dark text-white text-center mb-3 tile" data-id="{{goal.id}}">
     <div class="card-body">
        <h5 class="card-title">{{goal.description}}</h5>
-       <p class="card-text">{{goal.due_date}}</p>
-       <p class="card-text">{{goal.complete}}</p>
+       <p class="card-text countdown mb-0 h6 text-muted">Time Remaining</p>
+       <p class="card-text countdown h3">{{countdown goal.due_date}}</p>
+       <!-- <button class="btn btn-secondary goalComplete" data-id="{{goal.id}}" data-date="{{goal.due_date}}" data-description="{{goal.description}}">Mark When Complete</button> -->
+       <form class="goal-check">
+       <p class="h6 text-muted">Complete?</p>
+       <input type="checkbox" name="goal-complete" class="larger-checkbox goal-complete mt-3" data-id="{{goal.id}}" data-complete="{{goal.complete}}" {{checked goal.complete}}>
+      </form>
+       <div class="mt-4">
+         <button type="button" data-id="{{goal.id}}" data-toggle="modal" data-target="#goal-settings-modal" class="btn btn-outline-light goal-settings">Settings</button>
+      </div>
      </div>
-     <button type="button" data-id="{{goal.id}}" data-toggle="modal" data-target="#goal-settings-modal" class="btn btn-dark goal-settings">Settings</button>
-     <button class="btn btn-dark streakButton" data-id="{{goal.id}}" data-date="{{goal.due_date}}" data-description="{{goal.description}}">+</button>
+
+
   </div>
 
   <!-- EDIT GOAL MODAL -->
@@ -25,10 +33,12 @@
             <p class="edit-goal-failure"></p>
             <div class="form-group">
               <!-- Goal Description Input -->
+              <p>Update your goal description</p>
               <input type="text" class="form-control" name="goal[description]" placeholder="Edit goal description..." required>
             </div>
             <div class="form-group">
               <!-- Goal Date Input -->
+              <p>Update the due by date</p>
               <input type="date" class="form-control" name="goal[due_date]" required>
             </div>
           </div>

@@ -46,25 +46,26 @@ const updateGoal = function (id, formData) {
   })
 }
 
-// const updateStreak = function (id, streak, title) {
-//   return $.ajax({
-//     url: config.apiUrl + '/habits/' + id,
-//     data: { habit: {
-//       streak: JSON.stringify(streak),
-//       habit_title: title }
-//     },
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + store.user.token
-//     }
-//   })
-// }
+const updateGoalComplete = function (id, complete) {
+  return $.ajax({
+    url: config.apiUrl + '/goals/' + id,
+    data: { goal: {
+      // streak: JSON.stringify(streak),
+      // habit_title: title
+      complete: complete
+    }
+    },
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    }
+  })
+}
 
 module.exports = {
   getGoals,
   createGoal,
   deleteGoal,
-  updateGoal
-  // ,
-  // updateStreak
+  updateGoal,
+  updateGoalComplete
 }
