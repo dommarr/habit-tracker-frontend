@@ -64,6 +64,7 @@ const onShowGoals = event => {
   $('.habit-view').hide()
   $('.goal-view').show()
   onGetGoals(event)
+  $('body').css({'background-color': '#007bff'})
 }
 
 const addHandlers = () => {
