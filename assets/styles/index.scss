@@ -1,8 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 @import 'theme';
+@import 'colors';
 
 body {
-  background-color: bg-info;
+  background-color: $light;
 }
 
 h1 {
@@ -20,4 +21,28 @@ h1 {
   align-items: center;
   display: flex;
   justify-content: center;
+}
+
+.message {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.sub-title {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.dark {
+  color: $dark;
+}
+
+.primary {
+  color: $primary;
+}
+
+.larger-checkbox {
+  transform: scale(4);
 }

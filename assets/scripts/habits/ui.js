@@ -2,6 +2,14 @@
 
 const showHabitsTemplate = require('../templates/habit-listing.handlebars')
 
+const failureMessage = message => {
+  $('#message').text(message)
+  $('form').trigger('reset')
+  setTimeout(function () {
+    $('#message').text('')
+  }, 2000)
+}
+
 const getHabitsSuccess = (data) => {
   const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
   $('.content').show()
@@ -10,24 +18,36 @@ const getHabitsSuccess = (data) => {
 }
 
 const createHabitSuccess = (data) => {
-  $('#message').text('Habit created.')
-  $('#habit-menu').prop('disabled', false)
-  $('#add-habit').hide()
+  // Close the modal after a submit event
+  $('#add-habit-modal').modal('hide')
+  // Show a success modal
+  $('#add-habit-success-modal').modal('show')
+  $('form').trigger('reset')
+  $('.goal-view').hide()
+  $('.habit-view').show()
 }
 
 const deleteHabitSuccess = (data) => {
-  const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
-  $('.content').html(showHabitsHtml)
-  $('#message').text('Habit deleted.')
+  // Close the modal after a submit event
+  $('#settings-modal').modal('hide')
+  $('.modal-backdrop').remove()
+  // Show a success modal
+  $('#delete-habit-success-modal').modal('show')
+  $('form').trigger('reset')
 }
 
 const updateHabitSuccess = (data) => {
-  const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
-  $('.content').html(showHabitsHtml)
+  // const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
+  // $('.content').html(showHabitsHtml)
+  $('#settings-modal').modal('hide')
+  $('.modal-backdrop').remove()
+  // Show a success modal
+  $('#update-habit-success-modal').modal('show')
+  $('form').trigger('reset')
 }
 
-const failure = (error) => {
-  console.error(error)
+const failure = () => {
+  failureMessage('Application error.')
 }
 
 module.exports = {
