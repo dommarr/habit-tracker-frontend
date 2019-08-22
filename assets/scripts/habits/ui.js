@@ -25,6 +25,7 @@ const createHabitSuccess = (data) => {
   $('form').trigger('reset')
   $('.goal-view').hide()
   $('.habit-view').show()
+  $('body').css({'background-color': '#343a40'})
 }
 
 const deleteHabitSuccess = (data) => {
