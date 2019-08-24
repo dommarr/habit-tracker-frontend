@@ -3,18 +3,30 @@
 const showGoalsTemplate = require('../templates/goal-listing.handlebars')
 
 const failureMessage = message => {
-  $('#message').text(message)
+  $('.message').text(message)
   $('form').trigger('reset')
   setTimeout(function () {
-    $('#message').text('')
+    $('.message').text('')
   }, 2000)
+}
+
+const emptyMessage = message => {
+  $('.empty').text(message)
+  $('form').trigger('reset')
+  setTimeout(function () {
+    $('.empty').text('')
+  }, 3000)
 }
 
 const getGoalsSuccess = (data) => {
   const showGoalsHtml = showGoalsTemplate({ goals: data.goals })
+  emptyMessage('')
   $('.content').show()
   $('.content').html(showGoalsHtml)
   $('#auth').hide()
+  if (data.goals.length < 1) {
+    emptyMessage('⬁ Add a goal!')
+  }
 }
 
 const createGoalSuccess = (data) => {

@@ -5,18 +5,18 @@ const api = require('./api')
 const habitEvents = require('../habits/events.js')
 
 const successMessage = message => {
-  $('#message').text(message)
+  $('.message').text(message)
   $('form').trigger('reset')
   setTimeout(function () {
-    $('#message').text('')
+    $('.message').text('')
   }, 2000)
 }
 
 const failureMessage = message => {
-  $('#message').text(message)
+  $('.message').text(message)
   $('form').trigger('reset')
   setTimeout(function () {
-    $('#message').text('')
+    $('.message').text('')
   }, 2000)
 }
 
