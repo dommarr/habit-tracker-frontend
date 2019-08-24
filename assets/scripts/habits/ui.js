@@ -3,18 +3,30 @@
 const showHabitsTemplate = require('../templates/habit-listing.handlebars')
 
 const failureMessage = message => {
-  $('#message').text(message)
+  $('.message').text(message)
   $('form').trigger('reset')
   setTimeout(function () {
-    $('#message').text('')
+    $('.message').text('')
   }, 2000)
+}
+
+const emptyMessage = message => {
+  $('.empty').text(message)
+  $('form').trigger('reset')
+  setTimeout(function () {
+    $('.empty').text('')
+  }, 3000)
 }
 
 const getHabitsSuccess = (data) => {
   const showHabitsHtml = showHabitsTemplate({ habits: data.habits })
+  emptyMessage('')
   $('.content').show()
   $('.content').html(showHabitsHtml)
   $('#auth').hide()
+  if (data.habits.length < 1) {
+    emptyMessage('⬁ Add a habit!')
+  }
 }
 
 const createHabitSuccess = (data) => {
