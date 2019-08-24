@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <title>Habit Hero</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      <!-- Do not add `link` tags-->
+      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+      <!-- Do not add `script` tags-->
+      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+    </head>
+    <body>
+      <!-- class="bg-dark" -->
+      <header class="bg-secondary mb-0 pt-2">
+        <h1 class="text-light">Habit Hero</h1>
+
+        <p class="quote text-light mb-0"><i>"The way you do anything, is the way you do everything."</i></p>
+        <p id="message" class="message text-light mb-0 pb-3"></p>
+
+        <nav class="navbar">
+          <!-- Dropdown Menu -->
+          <!-- <a href="#" class="navbar-item" id="not-signed-in">Not-signed In</a> -->
+          <div class="dropdown">
+            <!-- The "Username" link will trigger the dropdown menu -->
+            <a class="dropdown-toggle navbar-item text-light username" id="dropdownMenuButton" data-toggle="dropdown" href="#">Username</a>
+            <!-- These contents will be revealed when the user clicks on "Username" -->
+            <div class="dropdown-menu">
+              <a class="dropdown-item" id="habit-menu" href="#">Add Habit</a>
+              <a class="dropdown-item" id="goal-menu" href="#">Add Goal</a>
+              <a class="dropdown-item" id="password-menu" data-toggle="modal" data-target="#change-password-modal" href="#">Change Password</a>
+              <a class="dropdown-item" id="sign-out" href="#">Sign Out</a>
+            </div>
+          </div>
+
+          <!-- CHANGE PASSWORD MODAL -->
+          <div class="modal fade" id="change-password-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Change Password</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form id="change-password">
+                  <div class="modal-body">
+                    <p class="message text-danger"></p>
+                    <p class="password-error text-danger"></p>
+                    <div class="form-group">
+                      <input type="password" name="passwords[old]" placeholder="old password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                      <input type="password" name="passwords[new]" placeholder="new password" class="form-control" required>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Change Password</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- CHANGE PASSWORD SUCCESS MODAL -->
+          <div class="modal fade" id="change-password-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Change Password Successful</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>You've successfully change your password!</p>
+                  <!-- Closes the success WITHOUT submit -->
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD HABIT MODAL -->
+          <div class="modal fade" id="add-habit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Habit</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form id="add-habit">
+                  <div class="modal-body">
+                    <p class="message text-danger"></p>
+                    <p class="add-habit-failure"></p>
+                    <div class="form-group">
+                      <!-- Habit Title Input -->
+                      <p>Name the habit you'd like to track</p>
+                      <input type="text" class="form-control" name="habit[habit_title]" placeholder="Habit title..." required>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Habit</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD HABIT SUCCESS MODAL -->
+          <div class="modal fade" id="add-habit-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Habit Successful</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>You've successfully added a habit!</p>
+                  <!-- Closes the success WITHOUT submit -->
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD GOAL MODAL -->
+          <div class="modal fade" id="add-goal-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Goal</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <form id="add-goal">
+                  <div class="modal-body">
+                    <p class="message text-danger"></p>
+                    <p class="add-goal-failure"></p>
+                    <div class="form-group">
+                      <!-- Goal Description Input -->
+                      <p>Describe your goal in a sentence</p>
+                      <input type="text" class="form-control" name="goal[description]" placeholder="Goal description..." required>
+                    </div>
+                    <div class="form-group">
+                      <!-- Goal Date Input -->
+                      <p>Goal due by</p>
+                      <input type="date" class="form-control" name="goal[due_date]" required>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Goal</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- ADD GOAL SUCCESS MODAL -->
+          <div class="modal fade" id="add-goal-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Goal Successful</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p>You've successfully added a goal!</p>
+                  <!-- Closes the success WITHOUT submit -->
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+
+      <!-- DELETE HABIT SUCCESS MODAL -->
+      <div class="modal fade" id="delete-habit-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Habit Successful</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You've successfully deleted a habit!</p>
+              <!-- Closes the success WITHOUT submit -->
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPDATE HABIT SUCCESS MODAL -->
+      <div class="modal fade" id="update-habit-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Habit Successful</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You've successfully updated a habit!</p>
+              <!-- Closes the success WITHOUT submit -->
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DELETE GOAL SUCCESS MODAL -->
+      <div class="modal fade" id="delete-goal-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Delete Goal Successful</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You've successfully deleted a goal!</p>
+              <!-- Closes the success WITHOUT submit -->
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- UPDATE GOAL SUCCESS MODAL -->
+      <div class="modal fade" id="update-goal-success-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Goal Successful</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You've successfully updated a goal!</p>
+              <!-- Closes the success WITHOUT submit -->
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <section id="auth" class="container col-6 shadow-lg rounded bg-secondary text-white">
+      <!-- Sign Up -->
+      <div class="row forms mt-4 auth">
+        <form id="sign-up">
+          <h2>Sign Up</h2>
+          <input class="form-control mb-2 mr-2" type="email" name="credentials[email]" placeholder="Email">
+          <input class="form-control mb-2 mr-2" type="password" name="credentials[password]" placeholder="Password">
+          <input class="form-control mb-2 mr-2" type="password" name="credentials[password_confirmation]" placeholder="Confirm password">
+          <button class="btn btn-dark mb-2 mr-2">Sign Up</button>
+        </form>
+
+        <!-- Sign In -->
+        <form id="sign-in">
+          <h2 class="ml-2">Sign In</h2>
+          <input class="form-control mb-2 mr-2" type="email" name="credentials[email]" placeholder="Email">
+          <input class="form-control mb-2 mr-2" type="password" name="credentials[password]" placeholder="Password">
+          <button class="btn btn-dark mb-2 mr-2">Sign In</button>
+        </form>
+      </div>
+    </section>
+
+  <main>
+    <!-- HABITS SUB-HEADER -->
+    <div class="habit-view mb-3 mt-3">
+      <div class="sub-title">
+        <h3 class="text-light">Habits</h3>
+        <button type="button" id="show-goals" class="btn btn-secondary">Show Goals</button>
+      </div>
+    </div>
+    <!-- GOALS SUB-HEADER -->
+    <div class="goal-view mb-3 mt-3">
+      <div class="sub-title">
+        <h3 class="text-light">Goals</h3>
+        <button type="button" id="show-habits" class="btn btn-secondary">Show Habits</button>
+      </div>
+    </div>
+    <!-- Message to add a habit/goal when empty -->
+    <h2 class="empty text-light mt-4"></h2>
+    <!-- SHOWS HABITS OR GOALS -->
+    <div class="container card-box">
+        <div id="content" class="content card-deck"></div>
+    </div>
+
+  </main>
+
+  </body>
+</html>
